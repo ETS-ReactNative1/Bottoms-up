@@ -1,26 +1,19 @@
 {
-  "name": "Bottoms-Up-Project",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Backend",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "concurrently \"npm run start-watch\" \"cd BottomsUp && npm start\"",
+    "dev": "concurrently \"npm run start-watch\" \"cd ../ && npm start\"",
     "start-watch": "nodemon server.js",
-    "build": "cd BottomsUp && npm run build"
+    "build": "cd ../ && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bauter/Bottoms-up.git"
-  },
+  
   "keywords": [],
   "author": "Hue Chang & Bryan Auter",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Bauter/Bottoms-up/issues"
-  },
-  "homepage": "https://github.com/Bauter/Bottoms-up#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
