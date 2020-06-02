@@ -10,7 +10,6 @@
     "start-watch": "nodemon server.js",
     "build": "cd ../ && npm run build"
   },
-  
   "keywords": [],
   "author": "Hue Chang & Bryan Auter",
   "license": "ISC",
