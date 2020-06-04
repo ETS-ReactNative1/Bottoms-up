@@ -1,9 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-
+import { MaterialIcons } from '@expo/vector-icons';
 import TabBarIcon from '../components/TabBarIcon';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import SearchScreen from '../screens/SearchScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
+import PantryScreen from '../screens/PantryScreen';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -17,19 +20,44 @@ export default function BottomTabNavigator({ navigation, route }) {
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen
-        name="Home"
+        name='Home'
         component={HomeScreen}
         options={{
-          title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          title: 'Home',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='md-home' />
+          ),
+        }}
+      />
+
+      <BottomTab.Screen
+        name='Search'
+        component={SearchScreen}
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name='md-search' />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name='Pantry'
+        component={PantryScreen}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Pantry',
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons name='fridge' size={24} color='black' />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name='Favorite'
+        component={FavoriteScreen}
+        options={{
+          title: 'Favorite',
+          tabBarIcon: ({ focused }) => (
+            <MaterialIcons name='favorite' size={24} color='black' />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -37,12 +65,17 @@ export default function BottomTabNavigator({ navigation, route }) {
 }
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
+  const routeName =
+    route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME;
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Bottoms-Up';
+    case 'Search':
+      return 'Search';
+    case 'Pantry':
+      return 'Pantry';
+    case 'Favorite':
+      return 'Favorite';
   }
 }
