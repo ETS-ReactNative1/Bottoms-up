@@ -30,7 +30,7 @@ const userSchema = new Schema({
         default: Date.now
     },
     // Key to the user model
-    recipes: [
+    favorites: [
         {
             type: Schema.Types.ObjectId,
             ref: "Recipe"
