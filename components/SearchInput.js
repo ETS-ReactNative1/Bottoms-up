@@ -7,10 +7,10 @@ export default function Form(props) {
     <View style={styles.container}>
       <View>
         <TextInput
-          //   onChangeText={(text) => props.handleInputChange(text)}
+          onChangeText={(text) => props.handleInputChange(text)}
           placeholder='Search Drink'
           style={styles.input}
-          //   onSubmitEditing={props.handleFormSubmit}
+          onSubmitEditing={props.handleFormSubmit}
           returnKeyType='search'
         />
       </View>

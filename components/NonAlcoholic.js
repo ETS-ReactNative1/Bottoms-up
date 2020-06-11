@@ -4,6 +4,7 @@ import { Text, View, Dimensions, StyleSheet, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel'; // Version can be specified in package.json
 
 import { scrollInterpolator, animatedStyles } from '../utils/animations';
+import API from '../utils/API'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -22,6 +23,15 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
+  }
+
+  componentDidMount() {
+    API.searchForNonAlcoholic()
+    .then((res) => {
+      res.drinks.map((drink) => {
+        console.log(drink)
+      })
+    })
   }
 
   _renderItem({ item }) {

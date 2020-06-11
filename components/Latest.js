@@ -4,6 +4,7 @@ import { Text, View, Dimensions, StyleSheet, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel'; // Version can be specified in package.json
 
 import { scrollInterpolator, animatedStyles } from '../utils/animations';
+import API from '../utils/API'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -17,11 +18,22 @@ for (let i = 0; i < 10; i++) {
 export default class App extends Component {
   state = {
     index: 0,
+    drinks: []
   };
 
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
+  }
+
+  componentDidMount() {
+    API.getLatestCocktails()
+    .then((res) => {
+      res.drinks.map((drink) => {
+        console.log(drink.strDrink)
+        this.setState({drinks: res.drinks})
+      })
+    })
   }
 
   _renderItem({ item }) {
@@ -40,7 +52,7 @@ export default class App extends Component {
     return (
       <View>
         <Text style={{ textAlign: 'center', fontSize: 20, marginTop: 10 }}>
-          Classic
+          Latest
         </Text>
         <Carousel
           ref={(c) => (this.carousel = c)}

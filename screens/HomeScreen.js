@@ -11,18 +11,18 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { MonoText } from '../components/StyledText';
 import Popular from '../components/Popular';
-import Classic from '../components/Classic';
-import Martini from '../components/Martini';
-import Tropical from '../components/Tropical';
+import Latest from '../components/Latest';
+import Shots from '../components/Shots';
+import PartyDrink from '../components/PartyDrink';
 import NonAlcoholic from '../components/NonAlcoholic';
 
 export default function HomeScreen() {
   return (
     <ScrollView>
       <Popular />
-      <Classic />
-      <Martini />
-      <Tropical />
+      <Latest />
+      <Shots />
+      <PartyDrink />
       <NonAlcoholic />
     </ScrollView>
   );

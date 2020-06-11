@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //======================================================
-// User Model
+// User Model (login info? grab naim and email if not specific to one method {FB/Google} )
 //======================================================
 
 const userSchema = new Schema({
@@ -36,10 +36,10 @@ const userSchema = new Schema({
             ref: "Recipe"
         }
     ],
-    shoppingList: [
+    pantryList: [
         {
             type: Schema.Types.ObjectId,
-            ref: "GroceryList"
+            ref: "PantryItem"
         }
     ]
     
