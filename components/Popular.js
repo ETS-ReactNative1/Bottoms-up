@@ -18,6 +18,7 @@ for (let i = 0; i < 10; i++) {
 export default class App extends Component {
   state = {
     index: 0,
+    results:[]
   };
 
   constructor(props) {
@@ -28,11 +29,14 @@ export default class App extends Component {
   componentDidMount() {
     API.searchForPopular()
     .then((res) => {
+      this.setState({results: res.drinks})
+      // Purpose of this map function is to log the drink name
       res.drinks.map((drink) => {
         // Change ".strDrink" to any other property of the object or remove to parse all the objects as a whole
         console.log(drink.strDrink)
       })
     })
+    .catch(err => console.log(err))
   }
 
   _renderItem({ item }) {

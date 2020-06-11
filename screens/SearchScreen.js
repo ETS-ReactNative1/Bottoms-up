@@ -62,7 +62,12 @@ class SearchScreen extends React.Component {
   searchByIngredient = (searchTerm) => {
     API.searchByIngredient(searchTerm)
     .then((res) => {
-      console.log(res)
+      console.log(res.drinks)
+      if(!res.drinks) {
+        console.log(`No drinks found with the search term: ${searchTerm}`)
+      } else {
+        this.setState({ results: res.drinks })
+      }
     })
     .catch((err) => console.log(err))
   }
@@ -70,9 +75,17 @@ class SearchScreen extends React.Component {
   searchByLetter = (letter) => {
     API.searchByFirstLetter(letter)
     .then((res) => {
-      res.drinks.map((drink) => {
-        console.log(drink.strDrink)
-      })
+      // Use conditional statement to check and see if the response is null or not
+      if (!res.drinks) {
+        console.log(`No results found for: ${letter}`)
+      } else {
+        this.setState({ results: res.drinks })
+        // Purpose of this map function is simply to console log and parse the data down to the drink name
+        res.drinks.map((drink) => {
+          console.log(drink.strDrink)
+
+        })
+      }
     })
   }
 
@@ -90,32 +103,32 @@ class SearchScreen extends React.Component {
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit}
         />
-        <Text onClick={this.searchByLetter("A")}>A</Text>
-        <Text onPress={this.searchByLetter("B")}>B</Text>
-        <Text onPress={this.searchByLetter("C")}>C</Text>
-        <Text onPress={this.searchByLetter("D")}>D</Text>
-        <Text onPress={this.searchByLetter("E")}>E</Text>
-        <Text onPress={this.searchByLetter("F")}>F</Text>
-        <Text onPress={this.searchByLetter("G")}>G</Text>
-        <Text onPress={this.searchByLetter("H")}>H</Text>
-        <Text onPress={this.searchByLetter("I")}>I</Text>
-        <Text onPress={this.searchByLetter("J")}>J</Text>
-        <Text onPress={this.searchByLetter("K")}>K</Text>
-        <Text onPress={this.searchByLetter("L")}>L</Text>
-        <Text onPress={this.searchByLetter("M")}>M</Text>
-        <Text onPress={this.searchByLetter("N")}>N</Text>
-        <Text onPress={this.searchByLetter("O")}>O</Text>
-        <Text onPress={this.searchByLetter("P")}>P</Text>
-        <Text onPress={this.searchByLetter("Q")}>Q</Text>
-        <Text onPress={this.searchByLetter("R")}>R</Text>
-        <Text onPress={this.searchByLetter("S")}>S</Text>
-        <Text onPress={this.searchByLetter("T")}>T</Text>
-        <Text onPress={this.searchByLetter("U")}>U</Text>
-        <Text onPress={this.searchByLetter("V")}>V</Text>
-        <Text onPress={this.searchByLetter("W")}>W</Text>
-        <Text onPress={this.searchByLetter("X")}>X</Text>
-        <Text onPress={this.searchByLetter("Y")}>Y</Text>
-        <Text onPress={this.searchByLetter("Z")}>Z</Text>
+        <Text onClick={() => {this.searchByLetter("A")}}>A</Text>
+        <Text onPress={() => {this.searchByLetter("B")}}>B</Text>
+        <Text onPress={() => {this.searchByLetter("C")}}>C</Text>
+        <Text onPress={() => {this.searchByLetter("D")}}>D</Text>
+        <Text onPress={() => {this.searchByLetter("E")}}>E</Text>
+        <Text onPress={() => {this.searchByLetter("F")}}>F</Text>
+        <Text onPress={() => {this.searchByLetter("G")}}>G</Text>
+        <Text onPress={() => {this.searchByLetter("H")}}>H</Text>
+        <Text onPress={() => {this.searchByLetter("I")}}>I</Text>
+        <Text onPress={() => {this.searchByLetter("J")}}>J</Text>
+        <Text onPress={() => {this.searchByLetter("K")}}>K</Text>
+        <Text onPress={() => {this.searchByLetter("L")}}>L</Text>
+        <Text onPress={() => {this.searchByLetter("M")}}>M</Text>
+        <Text onPress={() => {this.searchByLetter("N")}}>N</Text>
+        <Text onPress={() => {this.searchByLetter("O")}}>O</Text>
+        <Text onPress={() => {this.searchByLetter("P")}}>P</Text>
+        <Text onPress={() => {this.searchByLetter("Q")}}>Q</Text>
+        <Text onPress={() => {this.searchByLetter("R")}}>R</Text>
+        <Text onPress={() => {this.searchByLetter("S")}}>S</Text>
+        <Text onPress={() => {this.searchByLetter("T")}}>T</Text>
+        <Text onPress={() => {this.searchByLetter("U")}}>U</Text>
+        <Text onPress={() => {this.searchByLetter("V")}}>V</Text>
+        <Text onPress={() => {this.searchByLetter("W")}}>W</Text>
+        <Text onPress={() => {this.searchByLetter("X")}}>X</Text>
+        <Text onPress={() => {this.searchByLetter("Y")}}>Y</Text>
+        <Text onPress={() => {this.searchByLetter("Z")}}>Z</Text>
         <SearchResults style={{ height: '80%', width: '80%' }} />
       </ScrollView>
     );

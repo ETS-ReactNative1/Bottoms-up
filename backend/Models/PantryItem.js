@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
 // GroceryList Model
 //======================================================
 
-const pantryItemSchema = new Schema({
+const PantryItemSchema = new Schema({
    
     title: { 
       type: String,

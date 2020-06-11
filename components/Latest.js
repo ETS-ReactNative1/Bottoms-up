@@ -18,7 +18,7 @@ for (let i = 0; i < 10; i++) {
 export default class App extends Component {
   state = {
     index: 0,
-    drinks: []
+    results: []
   };
 
   constructor(props) {
@@ -29,20 +29,24 @@ export default class App extends Component {
   componentDidMount() {
     API.getLatestCocktails()
     .then((res) => {
+      this.setState({results: res.drinks})
+      // Purpose of this map function is to log the drink name
       res.drinks.map((drink) => {
         console.log(drink.strDrink)
-        this.setState({drinks: res.drinks})
       })
     })
+    .catch(err => console.log(err))
   }
 
   _renderItem({ item }) {
     return (
       <View style={styles.itemContainer}>
+        {this.state.results.map((drink) => (
         <Image
-          source={require('../assets/images/new.jpg')}
+          source={{uri: drink.strDrinkThumb+"/preview"}}
           style={{ height: '80%', width: '100%' }}
         />
+        ))}
         <Text style={styles.itemLabel}>Name of Drink:</Text>
       </View>
     );
