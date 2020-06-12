@@ -3,8 +3,7 @@
 //======================================================
 
 module.exports = {
-    Recipe: require("./recipe"),
-    User: require("./user"),
-    // GroceryList: require("./GroceryList")
-    // Pantry???
+    Recipe: require("./Recipe"),
+    User: require("./User"),
+    PantryItem: require("./PantryItem")
 };

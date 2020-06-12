@@ -9,18 +9,18 @@ const Schema = mongoose.Schema;
 // GroceryList Model
 //======================================================
 
-const groceryListSchema = new Schema({
+const PantryItemSchema = new Schema({
    
     title: { 
       type: String,
        required: true
     },
-    ingredients: {
-       type: Array, 
+    amount: {
+       type: Number, 
        required: true 
     }
 });
 
-const GroceryList = mongoose.model("GroceryList", groceryListSchema);
+const PantryItem = mongoose.model("PantryItem", PantryItemSchema);
 
-module.exports = GroceryList;
+module.exports = PantryItem;

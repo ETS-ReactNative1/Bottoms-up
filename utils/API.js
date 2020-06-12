@@ -113,6 +113,23 @@ export default {
         .catch((err) => console.log(err))
     },
 
+    // SEARCH BY CATEGORY
+
+    searchByCategory: function(category) {
+        const apiKey = COCKTAIL_API;
+
+        return axios({
+            method:'GET',
+            url: `https://www.thecocktaildb.com/api/json/v2/${apiKey}/filter.php?c=${category}`,
+            header: {
+                Accept: 'application/json',
+                'content-type': 'application/json',
+            },
+        })
+        .then((res) => res.data)
+        .catch((err) => console.log(err))
+    },
+
     // SEARCH FOR NON-ALCOHOLIC
 
     searchForNonAlcoholic: function() {

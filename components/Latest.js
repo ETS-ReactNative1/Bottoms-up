@@ -4,6 +4,7 @@ import { Text, View, Dimensions, StyleSheet, Image } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel'; // Version can be specified in package.json
 
 import { scrollInterpolator, animatedStyles } from '../utils/animations';
+import API from '../utils/API'
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -17,6 +18,7 @@ for (let i = 0; i < 10; i++) {
 export default class App extends Component {
   state = {
     index: 0,
+    results: []
   };
 
   constructor(props) {
@@ -24,13 +26,27 @@ export default class App extends Component {
     this._renderItem = this._renderItem.bind(this);
   }
 
+  componentDidMount() {
+    API.getLatestCocktails()
+    .then((res) => {
+      this.setState({results: res.drinks})
+      // Purpose of this map function is to log the drink name
+      res.drinks.map((drink) => {
+        console.log(drink.strDrink)
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
   _renderItem({ item }) {
     return (
       <View style={styles.itemContainer}>
+        {this.state.results.map((drink) => (
         <Image
-          source={require('../assets/images/new.jpg')}
+          source={{uri: drink.strDrinkThumb+"/preview"}}
           style={{ height: '80%', width: '100%' }}
         />
+        ))}
         <Text style={styles.itemLabel}>Name of Drink:</Text>
       </View>
     );
@@ -40,7 +56,7 @@ export default class App extends Component {
     return (
       <View>
         <Text style={{ textAlign: 'center', fontSize: 20, marginTop: 10 }}>
-          Classic
+          Latest
         </Text>
         <Carousel
           ref={(c) => (this.carousel = c)}
