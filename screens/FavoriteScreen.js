@@ -1,7 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {
-  Image,
+  ImageBackground,
   Platform,
   StyleSheet,
   Text,
@@ -15,6 +15,12 @@ import Favorites from '../components/Favorite';
 export default function HomeScreen() {
   return (
     <ScrollView>
+      <View style={{ flex: 1, height: 250, width: '100%' }}>
+        <ImageBackground
+          source={require('../assets/images/favorite.jpg')}
+          style={{ flex: 1, width: '100%' }}
+        ></ImageBackground>
+      </View>
       <Favorites />
     </ScrollView>
   );

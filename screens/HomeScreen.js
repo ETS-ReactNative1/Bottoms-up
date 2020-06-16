@@ -19,6 +19,12 @@ import NonAlcoholic from '../components/NonAlcoholic';
 export default function HomeScreen() {
   return (
     <ScrollView>
+      <View style={{ flex: 1, height: 150, width: '100%' }}>
+        <Image
+          source={require('../assets/images/home1.jpg')}
+          style={{ flex: 1, width: '100%' }}
+        ></Image>
+      </View>
       <Popular />
       <Latest />
       <Shots />
