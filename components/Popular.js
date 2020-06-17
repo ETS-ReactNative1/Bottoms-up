@@ -29,6 +29,7 @@ export default class App extends Component {
   componentDidMount() {
     API.searchForPopular()
     .then((res) => {
+      console.log("popular")
       this.setState({results: res.drinks})
       // Purpose of this map function is to log the drink name
       res.drinks.map((drink) => {

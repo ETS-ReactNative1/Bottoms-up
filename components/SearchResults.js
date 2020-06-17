@@ -14,7 +14,7 @@ for (let i = 0; i < 10; i++) {
   DATA.push(i);
 }
 
-export default class App extends Component {
+class SearchResults extends React.Component {
   state = {
     index: 0,
   };
@@ -59,6 +59,8 @@ export default class App extends Component {
     );
   }
 }
+
+export default SearchResults;
 
 const styles = StyleSheet.create({
   carouselContainer: {
